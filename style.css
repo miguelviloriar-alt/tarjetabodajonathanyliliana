@@ -1,0 +1,685 @@
+/* --- Variables Globales --- */
+:root {
+    --primary-color: #a49378; /* Color dorado/oliva similar al sello */
+    --secondary-color: #fcfbf9; /* Fondo crema muy claro para el sobre */
+    --text-dark: #333333;
+    --text-light: #666666;
+    --white: #ffffff;
+    --font-titles: 'Playfair Display', serif;
+    --font-cursive: 'Great Vibes', cursive;
+    --font-body: 'Lora', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* === EL SOBRE ANIMADO === */
+.envelope-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.5s ease;
+    overflow: hidden;
+}
+
+/* La solapa de arriba simula la apertura */
+.envelope-flap {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 0;
+}
+
+.top-flap {
+    top: 0;
+    left: 0;
+    border-left: 50vw solid transparent;
+    border-right: 50vw solid transparent;
+    border-top: 40vh solid #f2f0eb; /* Color de la solapa */
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+    transform-origin: top;
+    transition: transform 1s ease-in-out;
+}
+
+.bottom-flap {
+    bottom: 0;
+    left: 0;
+    border-left: 50vw solid #f9f8f6;
+    border-right: 50vw solid #f9f8f6;
+    border-bottom: 60vh solid #f9f8f6;
+}
+
+.envelope-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 80vh;
+}
+
+.envelope-names {
+    font-family: var(--font-cursive);
+    font-size: 4.5rem;
+    color: #8c9c82; /* Verde oliva claro del ejemplo */
+    line-height: 1.2;
+    margin-top: 5vh;
+}
+
+.envelope-names .ampersand {
+    font-size: 3rem;
+    font-family: var(--font-cursive);
+}
+
+.seal-button {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #d4af37 0%, #aa8c2c 100%);
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.5);
+    color: #856a1b;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    margin: 20px 0;
+    position: relative;
+    z-index: 11;
+}
+
+.seal-button:hover {
+    transform: scale(1.1);
+}
+
+.seal-button::after {
+    content: '';
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    border: 1px solid rgba(133, 106, 27, 0.5);
+    border-radius: 50%;
+}
+
+.envelope-text {
+    margin-bottom: 5vh;
+}
+
+.envelope-text p {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+}
+
+.envelope-text strong {
+    font-size: 1.3rem;
+    display: block;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+/* Clases de animación al abrir */
+.envelope-wrapper.open .top-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-wrapper.open {
+    transform: translateY(-100vh);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* === SECCIÓN HERO === */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    background-image: url('novios.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+}
+
+.names-hero {
+    font-family: var(--font-cursive);
+    font-size: 4rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-top: auto;
+    margin-bottom: auto;
+    line-height: 1.2;
+}
+
+.names-hero .ampersand {
+    font-size: 2.5rem;
+    font-family: var(--font-cursive);
+}
+
+.mute-btn {
+    position: absolute;
+    bottom: 3rem;
+    right: 2rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    transition: background 0.3s;
+}
+
+.mute-btn:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+.bottom-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    position: absolute;
+    bottom: 3rem;
+    left: 0;
+    padding: 0 2rem;
+}
+
+.date-hero {
+    font-size: 3rem;
+    font-family: var(--font-titles);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1;
+}
+
+.scroll-indicator {
+    text-align: left;
+    animation: bounce 2s infinite;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.scroll-indicator i {
+    font-size: 2rem;
+    transform: rotate(180deg); /* Apunta abajo */
+}
+
+.scroll-indicator p {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(10px); }
+    60% { transform: translateY(5px); }
+}
+
+/* --- Tipografía Común --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-titles);
+    font-weight: 400;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+/* --- Animaciones de Scroll (Reveal) --- */
+.section-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+}
+
+.section-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Layout General Secciones --- */
+section {
+    padding: 5rem 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- Tarjetas Comunes --- */
+.card {
+    background: var(--white);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--primary-color);
+}
+
+.card .icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.divider {
+    width: 50px;
+    height: 1px;
+    background-color: #ddd;
+    margin: 1.5rem auto;
+}
+
+/* --- Botones --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.primary-btn:hover {
+    background-color: #8c7a61;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(164, 147, 120, 0.4);
+}
+
+.whatsapp-btn {
+    background-color: #25D366;
+    color: var(--white);
+    width: 100%;
+    font-weight: bold;
+}
+
+.whatsapp-btn:hover {
+    background-color: #20ba59;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* --- Cuenta Regresiva --- */
+.countdown-section {
+    background-color: var(--white);
+    max-width: 100%;
+    padding: 4rem 1.5rem;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.time-box {
+    text-align: center;
+}
+
+.time-box span {
+    font-family: var(--font-titles);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    display: block;
+    line-height: 1;
+}
+
+.time-box p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+/* --- Dresscode --- */
+.dresscode-section .warning {
+    margin-top: 1.5rem;
+    color: #c95c5c;
+    font-style: italic;
+}
+
+/* --- Formularios RSVP --- */
+.rsvp-form {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-top: 2rem;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.rsvp-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    background-color: var(--white);
+    color: var(--text-light);
+}
+
+footer .names-footer {
+    font-family: var(--font-cursive);
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* --- ESTILOS PREMIUM AÑADIDOS --- */
+.premium-card {
+    background: #fcfbf9;
+    border: 1px solid #eaddcf;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    position: relative;
+}
+
+.premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(to right, #d4af37, #e6d199, #d4af37);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.icon-dresscode {
+    color: #a49378;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.premium-card h3 {
+    font-family: var(--font-titles);
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.dresscode-desc {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.warning-elegant {
+    color: #c07c7c;
+    font-style: italic;
+    font-size: 1.05rem;
+    padding: 0 1rem;
+}
+
+/* --- ANIMACIONES Y TEXTURAS NUEVAS --- */
+
+/* Textura Premium Elegante para Dresscode */
+.textured-bg {
+    background-color: #f6f3eb; /* Tono crema elegante */
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.08'%3E%3Cpath d='M40 80c22.091 0 40-17.909 40-40S62.091 0 40 0 0 17.909 0 40s17.909 40 40 40zm0-2c20.987 0 38-17.013 38-38S60.987 2 40 2 2 19.013 2 40s17.013 38 38 38zm0-10c15.464 0 28-12.536 28-28S55.464 12 40 12 12 24.536 12 40s12.536 28 28 28zm0-2c14.359 0 26-11.641 26-26S54.359 14 40 14 14 25.641 14 40s11.641 26 26 26z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    padding: 6rem 1.5rem; /* un poco más despacio para lucir el fondo */
+    position: relative;
+    max-width: 100% !important; /* Para que el fondo ocupe todo el ancho */
+}
+
+/* Reducimos el ancho del contenido interno para que no se vea estirado */
+.textured-bg .premium-card {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Efecto cristal para que resalte la textura de fondo */
+.glass-card {
+    background: rgba(253, 252, 250, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+/* --- ANIMACIONES CELEBRACIÓN (BRINDIS) --- */
+.toast-animation {
+    display: flex;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: #bba382;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.glass-left, .glass-right {
+    display: inline-block;
+}
+
+/* La animación se dispara cuando JS añade 'animate-toast' */
+.toast-animation.animate-toast .glass-left {
+    animation: toastLeft 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.toast-animation.animate-toast .glass-right {
+    animation: toastRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes toastLeft {
+    0% { transform: translateX(-80px) rotate(-30deg); opacity: 0; }
+    50% { transform: translateX(10px) rotate(15deg); opacity: 1; }
+    70% { transform: translateX(-5px) rotate(-5deg); opacity: 1; }
+    100% { transform: translateX(8px) rotate(10deg); opacity: 1; } /* Translación positiva para juntarse */
+}
+
+@keyframes toastRight {
+    0% { transform: translateX(80px) rotate(30deg); opacity: 0; }
+    50% { transform: translateX(-10px) rotate(-15deg); opacity: 1; }
+    70% { transform: translateX(5px) rotate(5deg); opacity: 1; }
+    100% { transform: translateX(-8px) rotate(-10deg); opacity: 1; } /* Translación negativa para juntarse */
+}
+
+/* --- ANIMACIÓN DE REGALO --- */
+.gift-anim {
+    animation: giftWobble 2s ease-in-out forwards;
+    transform-origin: bottom center;
+}
+
+@keyframes giftWobble {
+    0% { transform: scale(1); }
+    15% { transform: scale(1.1) rotate(-10deg); }
+    30% { transform: scale(1.1) rotate(10deg); }
+    45% { transform: scale(1.1) rotate(-10deg); }
+    60% { transform: scale(1.1) rotate(0); }
+    100% { transform: scale(1); }
+}
+
+.location-section {
+    position: relative;
+}
+
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #d4af37;
+    border-radius: 50%;
+    opacity: 0;
+    animation: fall 6s infinite linear;
+}
+
+.confetti:nth-child(1) { left: 15%; animation-delay: 0s; background-color: #d4af37; width: 6px; height: 6px; }
+.confetti:nth-child(2) { left: 35%; animation-delay: 2s; background-color: #e6d199; width: 10px; height: 10px; }
+.confetti:nth-child(3) { left: 55%; animation-delay: 4s; background-color: #bba382; }
+.confetti:nth-child(4) { left: 75%; animation-delay: 1s; background-color: #f7eed8; width: 12px; height: 12px; }
+.confetti:nth-child(5) { left: 85%; animation-delay: 3s; background-color: #d4af37; }
+.confetti:nth-child(6) { left: 25%; animation-delay: 5s; background-color: #e6d199; width: 7px; height: 7px; }
+.confetti:nth-child(7) { left: 65%; animation-delay: 2.5s; background-color: #bba382; width: 9px; height: 9px; }
+.confetti:nth-child(8) { left: 95%; animation-delay: 0.5s; background-color: #d4af37; }
+
+@keyframes fall {
+    0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    80% { opacity: 0.6; }
+    100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+}
+
+/* Asegurar que las tarjetas estén sobre el confeti */
+.location-section .card {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- ALBUM DE FOTOS --- */
+.album-section {
+    text-align: center;
+}
+
+.album-desc {
+    margin-bottom: 2rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+@media (min-width: 600px) {
+    .gallery {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .gallery img {
+        width: 30%;
+        object-fit: cover;
+    }
+}
+
+/* --- Media Queries --- */
+@media (max-width: 600px) {
+    .envelope-names { font-size: 3.5rem; }
+    .names-hero { font-size: 3rem; }
+    .date-hero { font-size: 2.2rem; }
+    .countdown-container { gap: 1rem; }
+    .time-box span { font-size: 2rem; }
+    
+    /* Ajustar botón mute en móvil para no pisar la fecha */
+    .mute-btn {
+        bottom: 8rem;
+        right: 1.5rem;
+    }
+}

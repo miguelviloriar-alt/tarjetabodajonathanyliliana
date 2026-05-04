@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda - Jonathan & Liliana Mabel</title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="¡Nos Casamos! Jonathan & Liliana">
+    <meta property="og:description" content="Tenemos una gran noticia... Pulsa aquí para abrir la invitación.">
+    <meta property="og:image" content="novios.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Audio de Fondo (He puesto un piano romántico libre de derechos. Luego puedes cambiar el src por tu MP3) -->
+    <audio id="bg-music" loop>
+        <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- SOBRE ANIMADO INICIAL -->
+    <div class="envelope-wrapper" id="envelope-wrapper">
+        <div class="envelope-content">
+            <!-- Nombres en el sobre -->
+            <h1 class="envelope-names">Jonathan<br><span class="ampersand">&</span><br>Liliana Mabel</h1>
+
+            <!-- Sello -->
+            <button class="seal-button" id="open-envelope" aria-label="Abrir invitación">
+                <i class="fa-brands fa-pagelines"></i>
+            </button>
+
+            <!-- Texto inferior -->
+            <div class="envelope-text">
+                <p>Tenemos una noticia...</p>
+                <strong>¡PULSA EL SELLO Y DESLIZA!</strong>
+            </div>
+        </div>
+
+        <!-- Elementos decorativos del sobre (solapas) -->
+        <div class="envelope-flap top-flap"></div>
+        <div class="envelope-flap bottom-flap"></div>
+    </div>
+
+    <!-- CONTENIDO DE LA INVITACIÓN (Hero Section) -->
+    <header class="hero section-reveal">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="names-hero">Jonathan<br><span class="ampersand">&</span><br>Liliana Mabel</h1>
+
+            <!-- Botón de Audio -->
+            <button id="mute-btn" class="mute-btn">
+                <i class="fa-solid fa-volume-high"></i>
+            </button>
+
+            <!-- La fecha abajo y deslizar -->
+            <div class="bottom-hero">
+                <div class="scroll-indicator">
+                    <i class="fa-solid fa-hand-pointer"></i>
+                    <p>(DESLIZA)</p>
+                </div>
+                <p class="date-hero">10 . 10 . 2026</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Cuenta Regresiva -->
+    <section class="countdown-section section-reveal">
+        <h2>Ya falta menos...</h2>
+        <div class="countdown-container" id="countdown">
+            <div class="time-box">
+                <span id="days">00</span>
+                <p>Días</p>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <p>Horas</p>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <p>Minutos</p>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <p>Segundos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Detalles / Ubicación -->
+    <section class="location-section section-reveal">
+        <!-- Confeti Sutil -->
+        <div class="confetti-container">
+            <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+            <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+            <div class="confetti"></div><div class="confetti"></div>
+        </div>
+        
+        <h2>Matrimonio Civil & Celebración</h2>
+        <div class="card premium-card">
+            <!-- Animación de copas separadas -->
+            <div class="toast-animation">
+                <i class="fa-solid fa-wine-glass glass-left"></i>
+                <i class="fa-solid fa-wine-glass glass-right"></i>
+            </div>
+            <p class="card-date">Sábado, 10 de Octubre de 2026</p>
+            <p class="card-time">16:00 HS</p>
+            <div class="divider"></div>
+            <h4>Salón de Recepciones Qori</h4>
+            <p>Prolongación Avenida Perú 282, La Planicie Morales<br>Distrito de Morales, Provincia Tarapoto,
+                Departamento de San Martin.</p>
+            <a href="https://www.google.com/maps/place/Qori+-+Sal%C3%B3n+De+Recepciones/@-6.4747032,-76.4010848,16z/data=!4m15!1m8!3m7!1s0x91ba09630c83b689:0x19a9f6f6e27544f!2sCtra.+Fernando+Bela%C3%BAnde+Terry+84,+Tarapoto+22201!3b1!8m2!3d-6.4747032!4d-76.395935!16s%2Fg%2F11ths9f03r!3m5!1s0x91ba0963eb019889:0x98e4a4d4839ae831!8m2!3d-6.4742423!4d-76.3939449!16s%2Fg%2F11csqxf4jh?entry=ttu&g_ep=EgoyMDI2MDQyNy4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank" class="btn primary-btn">
+                <i class="fa-solid fa-location-dot"></i> Ver en Mapa
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección Código de Vestimenta -->
+    <section class="dresscode-section textured-bg section-reveal">
+        <h2>Código de Vestimenta</h2>
+        <div class="card premium-card glass-card">
+            <i class="fa-solid fa-user-tie icon icon-dresscode"></i>
+            <h3>Formal</h3>
+            <p class="dresscode-desc">Queremos que luzcas espectacular.</p>
+            <p class="warning-elegant"><strong>Nota:</strong> El color blanco está reservado exclusivamente para la novia.</p>
+        </div>
+    </section>
+
+    <!-- Sección Regalos -->
+    <section class="gift-section section-reveal">
+        <h2>Nuestro Mejor Regalo</h2>
+        <div class="card premium-card">
+            <i class="fa-solid fa-gift icon gift-anim"></i>
+            <p>Es que estés con nosotros en nuestro día. Pero si deseas hacernos un obsequio, puedes dejarlo en:</p>
+            <div class="divider"></div>
+            <p class="address"><strong>Jirón Lima 701</strong><br>(Botica Intifarma)</p>
+        </div>
+    </section>
+
+    <!-- Sección Álbum de Fotos -->
+    <section class="album-section section-reveal">
+        <p class="album-desc">Algunos de nuestros mejores momentos juntos.</p>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&q=80" alt="Foto 1">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=500&q=80" alt="Foto 2">
+            <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=500&q=80" alt="Foto 3">
+        </div>
+    </section>
+
+    <!-- Sección Confirmación de Asistencia -->
+    <section class="rsvp-section section-reveal">
+        <h2>Confirmación de Asistencia</h2>
+        <p>Por favor, confírmanos tu asistencia para organizar todo a la perfección.</p>
+
+        <form id="rsvp-form" class="rsvp-form">
+            <input type="text" id="guest-name" placeholder="Tu Nombre Completo" required>
+            <select id="guest-attendance" required>
+                <option value="" disabled selected>¿Asistirás?</option>
+                <option value="Sí, estaré ahí">Sí, confirmo mi asistencia</option>
+                <option value="Lo siento, no podré asistir">No podré asistir</option>
+            </select>
+            <input type="number" id="guest-companions" placeholder="Número de acompañantes (opcional)" min="0" max="5">
+            <textarea id="guest-message" placeholder="¿Algún mensaje para los novios o alergia alimentaria?"></textarea>
+
+            <button type="submit" class="btn whatsapp-btn">
+                <i class="fa-brands fa-whatsapp"></i> Confirmar Asistencia
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2 class="names-footer">Jonathan<br><span class="ampersand">&</span><br>Liliana Mabel</h2>
+        <p>¡Te esperamos!</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
