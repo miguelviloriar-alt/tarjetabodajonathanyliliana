@@ -56,7 +56,7 @@ body {
     height: 0;
     border-left: 50vw solid transparent;
     border-right: 50vw solid transparent;
-    border-top: 52vh solid #e8e4db; /* Solapa ligeramente más larga para llegar al sello */
+    border-top: 50vh solid #f2efea; /* Gris mucho más claro y elegante */
     z-index: 5;
     transform-origin: top;
     transition: transform 0.8s ease-in-out;
@@ -76,24 +76,26 @@ body {
 
 /* El contenido del frente debe estar sobre todo para que no se corte */
 .envelope-front-content {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 10;
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    width: 100%;
 }
 
 .envelope-names {
     font-family: var(--font-cursive);
     font-size: 4.5rem;
-    color: #a49378; /* Color uniforme */
+    color: #a49378; 
     line-height: 1.2;
-    margin-bottom: 2rem;
+    margin-bottom: 0; /* Ajustado para que el sello quede cerca de los nombres */
     text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    transform: translateY(-8vh); /* Subimos un poco los nombres */
 }
 
 .envelope-names .ampersand {
@@ -102,6 +104,10 @@ body {
 }
 
 .seal-button {
+    position: absolute;
+    top: 50vh; /* Justo en el centro donde termina la solapa de 50vh */
+    left: 50vw;
+    transform: translate(-50%, -50%); /* Centrado exacto del botón en la punta */
     width: 85px;
     height: 85px;
     background: radial-gradient(circle, #d4af37 0%, #aa8c2c 100%);
@@ -116,16 +122,16 @@ body {
     align-items: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 11;
-    margin: 1rem 0;
 }
 
 .seal-button:hover {
-    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale(1.1); /* Mantenemos el centrado al hacer hover */
     box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 .envelope-text {
-    margin-top: 2rem;
+    position: absolute;
+    bottom: 8vh; /* Posición fija abajo */
 }
 
 .envelope-text p {
