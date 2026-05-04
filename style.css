@@ -93,9 +93,10 @@ body {
     font-size: 4.5rem;
     color: #a49378; 
     line-height: 1.2;
-    margin-bottom: 0; /* Ajustado para que el sello quede cerca de los nombres */
+    margin-bottom: 0;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-    transform: translateY(-8vh); /* Subimos un poco los nombres */
+    transform: translateY(-25vh); /* Elevamos significativamente para centrar en la solapa superior */
+    text-align: center;
 }
 
 .envelope-names .ampersand {
@@ -663,8 +664,10 @@ footer .names-footer {
 
 .album-desc {
     margin-bottom: 2rem;
-    color: var(--text-light);
-    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-size: 4rem; /* grande */
+    font-family: var(--font-cursive);
+    line-height: 1.2;
 }
 
 .gallery {
@@ -698,11 +701,15 @@ footer .names-footer {
 
 /* --- Media Queries --- */
 @media (max-width: 600px) {
-    .envelope-names { font-size: 3.5rem; }
+    .envelope-names { 
+        font-size: 3rem !important; 
+        transform: translateY(-24vh) !important;
+    }
     .names-hero { font-size: 3rem; }
     .date-hero { font-size: 2.2rem; }
     .countdown-container { gap: 1rem; }
     .time-box span { font-size: 2rem; }
+    .album-desc { font-size: 3rem; }
     
     /* Ajustar botón mute en móvil para no pisar la fecha */
     .mute-btn {
