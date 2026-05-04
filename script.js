@@ -134,3 +134,19 @@ document.getElementById('rsvp-form').addEventListener('submit', function(e) {
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${whatsappMessage}`;
     window.open(whatsappUrl, '_blank');
 });
+
+// --- 6. Función Agendar en Calendario ---
+function addToCalendar() {
+    const title = "Matrimonio Civil Jonathan & Liliana Mabel";
+    const details = "¡Estamos muy emocionados de compartir este día contigo! Te esperamos en el Salón de Recepciones Qori.";
+    const location = "Salón de Recepciones Qori, Tarapoto, Perú";
+    
+    // Formato de fecha para Google: YYYYMMDDTHHMMSSZ (en UTC)
+    // 10 Octubre 2026 a las 16:00 (Hora Perú UTC-5) = 21:00 UTC
+    const start = "20261010T210000Z";
+    const end = "20261011T030000Z"; // Asumiendo 6 horas de evento
+    
+    const googleUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}&sf=true&output=xml`;
+    
+    window.open(googleUrl, '_blank');
+}

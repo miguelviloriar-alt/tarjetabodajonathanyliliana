@@ -355,6 +355,25 @@ section {
     box-shadow: 0 5px 15px rgba(164, 147, 120, 0.4);
 }
 
+.secondary-btn {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    margin-top: 1rem;
+}
+
+.secondary-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.calendar-btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+}
+
 .whatsapp-btn {
     background-color: #25D366;
     color: var(--white);
